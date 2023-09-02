@@ -22,8 +22,8 @@ const SideNav = () => {
   };
 
   return (
-    <div className="w-72 sm:w-64 fixed">
-      <div className="h-96 overflow-y-scroll">
+    <div className="w-64 fixed p-5">
+      <div className="height overflow-y-scroll">
         <div className="flex justify-between flex-1">
           {isOpen &&
             Object.keys(openSections).some(
@@ -69,7 +69,7 @@ const SideNav = () => {
               <Link href="/">Glow & Glam</Link>
             </p>
             <div className="mt-6">
-              <div className="menu-title flex items-center justify-between">
+              <div className="menu-title flex items-center justify-between mt-14">
                 <h1 className="text-3xl">Brand</h1>
                 <IoIosArrowForward
                   className={`w-6 h-6 cursor-pointer transition-transform transform ${

@@ -32,7 +32,7 @@ const { date = "desc", price, size, color, category, search } = searchParams;
 
   return (
     <>
-      <RootLayout>
+      <RootLayout suppressHydrationWarning={true}>
         <Layout>
           <div className="absolute top-28 py-0 px-14 -z-50">
             <BannerComponent heroBanner ={banner.length && banner[0]} />

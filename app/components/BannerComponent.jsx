@@ -16,27 +16,28 @@ const BannerComponent = ({ heroBanner }) => {
   } = heroBanner;
 
   return (
-    <div className="  dark:bg-banner-color-dark rounded-lg h-96 leading-tight w-full dark:glass-shadow-dark dark:backdrop-blur-lg shadow-glass-shadow-light backdrop-blur-md">
-      <div>
-        <h3>{smallText}</h3>
-        <h1>{largeText2}</h1>
+    <div className="relative dark:bg-banner-color-dark rounded-lg t w-full dark:glass-shadow-dark dark:backdrop-blur-lg shadow-glass-shadow-light backdrop-blur-md hero-banner-container">
+      <div className='p-10 text pl-20'>
+        <h3 className='text-2xl'>{smallText}</h3>
+        <h1 className='text-xl mt-5'>{largeText2}</h1>
         <Link href="/">
-          <button type="button">{buttonText}</button>
+          <button type="button" className='btn'>{buttonText}</button>
         </Link>
       </div>
-
+      <div className= "absolute hero-banner-image w-5/12  h-full">
       <Image
         src={urlForImage(heroBanner.image).url()}
         alt="heroBanner"
-        width={500}
-        height={500}
-        className="object-cover w-full object-center h-full"
+        width={280}
+        height={250}
+        className="object-cover w-full h-full"
       />
+      </div>
       <div>
 
-        <div className="">
+        {/* <div className="">
           <p>{desc}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   )
