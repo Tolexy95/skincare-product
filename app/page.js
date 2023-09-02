@@ -28,12 +28,14 @@ const { date = "desc", price, size, color, category, search } = searchParams;
 
   const products = await client.fetch(groq`*[_type == "product"]`);
 
+  const banner = await client.fetch(groq`*[_type == "banner"]`);
+
   return (
     <>
       <RootLayout>
         <Layout>
           <div className="absolute top-28 py-0 px-14 -z-50">
-            <BannerComponent />
+            <BannerComponent heroBanner ={banner.length && banner[0]} />
             <div className="mt-10 mb-80">
               <ProductGrid products={products} />
             </div>

@@ -22,7 +22,7 @@ const SideNav = () => {
   };
 
   return (
-    <div className="w-80 sm:w-64 fixed">
+    <div className="w-72 sm:w-64 fixed">
       <div className="h-96 overflow-y-scroll">
         <div className="flex justify-between flex-1">
           {isOpen &&

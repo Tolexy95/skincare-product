@@ -28,8 +28,7 @@ export function ProductGrid({ products }) {
 
   return (
     <div
-      className={`grid ${gridColsClass} gap-x-5 gap-y-10 xs:grid-cols-1 sm:grid-cols-2`}
-    >
+      className={`grid ${gridColsClass} gap-x-5 gap-y-10 xs:grid-cols-1 sm:grid-cols-2`}>
       {products.map((product) => (
         <div key={product._id} className="group text-sm w-full">
           <Link href="/">
