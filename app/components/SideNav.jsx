@@ -83,35 +83,35 @@ const SideNav = () => {
                 <div>
                   <ul className="menu-items">
                     <li className="item">
-                      <Link href="#">House of Tara</Link>
+                      <Link href="#"> shea Tribe</Link>
                     </li>
 
                     <li className="item">
-                      <Link href="#">Zaron Cosmetics</Link>
+                      <Link href="#">Arami</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Classic Makeup</Link>
+                      <Link href="#">Narganics</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Nuban Beauty</Link>
+                      <Link href="#">Orma Skincare</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Yanga Beauty</Link>
+                      <Link href="#">Aweni Organics</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Prestige Cosmetics</Link>
+                      <Link href="#">Amila Naturals</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Pauline Cosmetics</Link>
+                      <Link href="#">Ajali Naturals</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Kuddy Cosmetics</Link>
+                      <Link href="#">Bath Kandy</Link>
                     </li>
                     <li className="item">
                       <Link href="#">Elsas Pro</Link>
                     </li>
                     <li className="item">
-                      <Link href="#">Royale Makeup</Link>
+                      <Link href="#">Ajali Naturals</Link>
                     </li>
                   </ul>
                 </div>

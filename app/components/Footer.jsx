@@ -3,9 +3,10 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="absolute -bottom-full  border-t w-11/12">
-      <div className="mx-auto max-w-7xl  px-6 py-12 sm:py-20 lg:px-8">
-      <nav className="flex justify-center space-x-12" aria-label="Footer">
+    <div className="absolute bottom  border-t w-11/12">
+      <div className="mx-auto max-w-7xl sm:w-max   px-6 py-12 lg:px-8">
+      <nav className="flex sm:flex-col justify-center sm:items-center gap-x-12 " aria-label="Footer" >
+       
         <div className="pb-6">
           <Link href="/" className="text-sm leading-6">
             Home
@@ -49,3 +50,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+//   space-x-12

@@ -28,6 +28,7 @@ const { date = "desc", price, size, color, category, search } = searchParams;
 
   const products = await client.fetch(groq`*[_type == "product"]`);
 
+
   const banner = await client.fetch(groq`*[_type == "banner"]`);
 
   return (

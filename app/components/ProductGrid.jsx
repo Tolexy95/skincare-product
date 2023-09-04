@@ -7,7 +7,7 @@ import { urlForImage } from "@/lib/image";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useStateContext } from "@/context/SideNavBarContext";
 
-export function ProductGrid({ products }) {
+export function ProductGrid({ products}) {
   const { isOpen } = useStateContext();
 
   const gridColsClass = isOpen ? "grid-cols-4" : "grid-cols-5";
@@ -31,7 +31,7 @@ export function ProductGrid({ products }) {
       className={`grid ${gridColsClass} gap-x-5 gap-y-10 xs:grid-cols-1 sm:grid-cols-2`}>
       {products.map((product) => (
         <div key={product._id} className="group text-sm w-full">
-          <Link href="/">
+         <Link href={`/product/${product.slug.current}`}>
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-100 group-hover:opacity-75 dark:border-gray-800 h-64">
               <Image
                 src={urlForImage(product.images[0]).url()}

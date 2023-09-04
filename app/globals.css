@@ -199,6 +199,18 @@ width: 100%;
   /* margin-left: -16rem; */
 }
 
+.bottom{
+  bottom: -3000px;
+}
+
+@media screen and (max-width:430px) {
+  .bottom{
+    bottom: -1600px;
+  }
+  
+
+}
+
 .desc{
 position: absolute;
 right: 10%;
