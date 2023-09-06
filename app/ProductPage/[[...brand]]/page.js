@@ -37,7 +37,7 @@ const ProductPage = () => {
 
 
   return (
-      <div>
+      <div className="mt-32 mx-auto mb-16 px-10 maxWidth md:px-4">
         {isLoading ? (
           <p>Loading...</p> // Display a loading message or spinner
         ) : (

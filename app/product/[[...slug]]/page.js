@@ -28,8 +28,8 @@ export default async function ProductDetails({ params }) {
 
     return (
       
-             <main className="mt-36 mx-auto max-w-5xl sm:w-max sm:px-8">
-                <div className="flex gap-12 sm:flex-col ">
+             <main className="mt-36 mx-auto max-w-5xl lg:px-5 mb-32">
+                <div className="flex gap-12 sm:flex-col lg:gap-11 ">
                    
                     {/* Product */}
                     <div className="">

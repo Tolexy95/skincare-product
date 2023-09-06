@@ -159,8 +159,7 @@ width: 100%;
 }
 
 .hero-banner-container{
-  background-color: gray;
-  height: 400px;
+  height: 800px;
   line-height: 0.9; 
 }
 
@@ -186,11 +185,11 @@ width: 100%;
 }
 
 .text {
-  max-width: 35rem;
+  max-width: 30rem;
 }
 
 .height {
-  height: 30rem;
+  height: 400px;
 }
 
 .navbar {
@@ -199,23 +198,24 @@ width: 100%;
   /* margin-left: -16rem; */
 }
 
-.bottom{
-  bottom: -3000px;
+.maxWidth{
+  max-width: 120rem;
 }
+
 
 
 
 @media screen and (max-width:768px) {
-  .bottom{
-    bottom: -1000px;
+  .textSmall{
+    font-size: .1rem;
+    line-height: 2.5rem;
   }
-  
 
 }
 
 @media screen and (max-width:430px) {
-  .bottom{
-    bottom: -1600px;
+  .height {
+    height: 250px;
   }
   
 

@@ -22,8 +22,8 @@ module.exports = {
       'sm': {'max': '430px'},
       // => @media (max-width: 430px) { ... }
 
-      'sw': {'min': '425px'},
-      // => @media (max-width: 425px) { ... }
+      'sw': {'min': '426px'},
+      // => @media (max-width: 426px) { ... }
 
       'xs': {'max': '375px'},
       // => @media (max-width: 375px) { ... }

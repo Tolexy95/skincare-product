@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="absolute bottom  border-t w-11/12 md:w-10/12">
-      <div className="mx-auto max-w-7xl sm:w-max   px-6 py-12 lg:px-8">
+    <div className="border-t w-full">
+      <div className="mx-auto max-w-7xl  px-6 py-12">
       <nav className="flex  md:flex-col md:items-center justify-center gap-x-12 " aria-label="Footer" >
        
         <div className="pb-6">

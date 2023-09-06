@@ -24,10 +24,10 @@ export function ProductDisplay({ products}) {
       </div>
     );
   }
-
+  //  gap-x-5 
   return (
     <div
-      className={`grid ${gridColsClass} gap-x-5 gap-y-10 xs:grid-cols-1 sm:grid-cols-2`}>
+      className="grid grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-x-5  gap-y-10 xs:grid-cols-1 sm:grid-cols-2">
       {products.map((product) => (
         <div key={product._id} className="group text-sm w-full">
          <Link href={`/product/${product.slug.current}`}>
@@ -41,11 +41,11 @@ export function ProductDisplay({ products}) {
               />
             </div>
             <div className="">
-              <h3 className="mt-5 font-medium text-sm">{product.name}</h3>
+              <h3 className="mt-5 font-medium text-sm sm:h-14">{product.name}</h3>
               <p className="mt-2 font-medium text-xl">₦{product.price}</p>
             </div>
           </Link>
-          <div className="flex gap-6 items-center mt-4">
+          <div className="flex gap-6 items-center mt-4 sm:gap-3">
             <div className="">
               <p className="flex items-center gap-3 border border-gray-100 py-1 px-2">
                 <span className="">
@@ -61,7 +61,7 @@ export function ProductDisplay({ products}) {
             <div className="">
               <button
                 type="button"
-                className="border border-gray-100 py-1 px-1 "
+                className="border border-gray-100 py-1 px-1"
               >
                 ADD TO CART
               </button>
