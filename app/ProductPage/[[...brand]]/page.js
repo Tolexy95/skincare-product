@@ -1,11 +1,10 @@
 "use client"
 
-import { ProductGrid } from "@/app/components/ProductGrid";
+import { ProductDisplay } from "@/app/components/ProductDisplay";
 import React, { useState, useEffect } from "react";
 import { groq } from "next-sanity";
 import client from "@/lib/client";
 import { useSearchParams } from "next/navigation"; // Import useSearchParams
-import Layout from "@/app/components/Layout";
 
 
 const ProductPage = () => {
@@ -26,7 +25,6 @@ const ProductPage = () => {
           );
           setProducts(data);
           setIsLoading(false); // Set loading to false when data is fetched
-          console.log("data", data);
         } catch (error) {
           console.error("Error fetching products:", error);
           setIsLoading(false); // Set loading to false in case of an error
@@ -37,19 +35,15 @@ const ProductPage = () => {
     }
   }, [brand]);
 
-  console.log("Brand:", brand);
 
   return (
-    // <Layout>
       <div>
         {isLoading ? (
           <p>Loading...</p> // Display a loading message or spinner
         ) : (
-          <ProductGrid products={products} />
+          <ProductDisplay products={products} />
         )}
       </div>
-    // </Layout>
-
   );
 };
 

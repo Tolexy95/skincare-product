@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import {SideNavBarContext} from "@/context/SideNavBarContext"
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export const metadata = {
   title: "Skincare Product",
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
       <body>
         <SideNavBarContext> 
           <ThemeProvider>
+            <Navbar/>
             <main>{children}</main>
+            <Footer/>
           </ThemeProvider>
         </SideNavBarContext>
 
