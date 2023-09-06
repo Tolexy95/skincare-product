@@ -159,7 +159,7 @@ width: 100%;
 }
 
 .hero-banner-container{
-  background-color: #dcdcdc;
+  background-color: gray;
   height: 400px;
   line-height: 0.9; 
 }
@@ -167,8 +167,8 @@ width: 100%;
 
 .hero-banner-container button{
    border-radius: 15px;
-  padding: 10px 16px;
-  background-color: pink;
+  padding: 1.2rem 0;
+  background-color: rgba(97, 71, 71, 0.452);
   color: white;
   border: none;
   margin-top: 40px;
@@ -201,6 +201,16 @@ width: 100%;
 
 .bottom{
   bottom: -3000px;
+}
+
+
+
+@media screen and (max-width:768px) {
+  .bottom{
+    bottom: -1000px;
+  }
+  
+
 }
 
 @media screen and (max-width:430px) {

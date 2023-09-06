@@ -9,7 +9,6 @@ import { useStateContext } from "@/context/SideNavBarContext";
 
 export function ProductGrid({ products}) {
   const { isOpen } = useStateContext();
-
   const gridColsClass = isOpen ? "grid-cols-4" : "grid-cols-5";
   // const gridGapClass =isOpen ? ""
 

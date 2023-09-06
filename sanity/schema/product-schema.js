@@ -80,7 +80,7 @@ export const product = defineType({
                   { title: "Eyes (Skincare)", value: "eyes_skincare" },
                   {
                     title: "Feet/Head/Nails (Skincare)",
-                    value: "feet_head_nails_skincare",
+                    value: "feet_head_nails_skincare"
                   },
                 ],
               },

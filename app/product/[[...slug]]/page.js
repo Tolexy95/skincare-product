@@ -36,6 +36,8 @@ export default function ProductDetails({ params }) {
     
     `);
 
+    console.log(fetchedProduct)
+
             setProduct(fetchedProduct);
         } catch (error) {
             console.error("Error fetching product data:", error);
@@ -65,6 +67,7 @@ export default function ProductDetails({ params }) {
     // }
 
     useEffect(() => {
+        console.log("starting")
         // Fetch product data
         fetchProductData();
 
@@ -78,6 +81,7 @@ export default function ProductDetails({ params }) {
 
     return (
         <Layout>
+            
             <main className="mt-36 mx-auto max-w-5xl sm:w-max sm:px-8">
                 <div className="flex gap-12 sm:flex-col ">
                    
@@ -93,6 +97,7 @@ export default function ProductDetails({ params }) {
                     </div>
                 </div>
             </main>
+
         </Layout>
     );
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -8,11 +8,30 @@ import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { FaEdit } from "react-icons/fa";
 import { useStateContext } from "@/context/SideNavBarContext";
+import client from "@/lib/client";
+import { groq } from "next-sanity";
 
 
 const SideNav = () => {
-  const { isOpen, setIsOpen, openSections, setOpenSections } =useStateContext();
-    
+  const [brands, setBrands] = useState([]);
+  const { isOpen, setIsOpen, openSections, setOpenSections } = useStateContext();
+  
+  
+
+  const fetchBrands = async () => {
+    const data = await client.fetch(groq`*[_type == "product"]{ brand }`);
+    const uniqueBrands = [...new Set(data.map((product) => product.brand.trim()))];
+    setBrands(uniqueBrands);
+  };
+  
+
+
+  useEffect(() => {
+    // Fetch the list of brands from Sanity
+    fetchBrands();
+  }, []);
+
+
 
   const toggleSection = (section) => {
     setOpenSections((prevSections) => ({
@@ -72,47 +91,22 @@ const SideNav = () => {
               <div className="menu-title flex items-center justify-between mt-14">
                 <h1 className="text-3xl">Brand</h1>
                 <IoIosArrowForward
-                  className={`w-6 h-6 cursor-pointer transition-transform transform ${
-                    openSections["brand"] ? "-rotate-90" : "rotate-0"
-                  }`}
+                  className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["brand"] ? "-rotate-90" : "rotate-0"
+                    }`}
                   onClick={() => toggleSection("brand")}
                 />
               </div>
 
               {openSections["brand"] && (
                 <div>
-                  <ul className="menu-items">
-                    <li className="item">
-                      <Link href="#"> shea Tribe</Link>
-                    </li>
-
-                    <li className="item">
-                      <Link href="#">Arami</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Narganics</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Orma Skincare</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Aweni Organics</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Amila Naturals</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Ajali Naturals</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Bath Kandy</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Elsas Pro</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Ajali Naturals</Link>
-                    </li>
+                   <ul className="menu-items">
+                    {brands.map((brand) => (
+                      <li className="item" key={brand}>
+                        <Link href={`/ProductPage?brand=${encodeURIComponent(brand)}`}>
+                          {brand}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               )}
@@ -120,9 +114,8 @@ const SideNav = () => {
               <div className="menu-title flex items-center justify-between">
                 <h1 className="text-3xl">Categories</h1>
                 <IoIosArrowForward
-                  className={`w-6 h-6 cursor-pointer transition-transform transform ${
-                    openSections["categories"] ? "-rotate-90" : "rotate-0"
-                  }`}
+                  className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["categories"] ? "-rotate-90" : "rotate-0"
+                    }`}
                   onClick={() => toggleSection("categories")}
                 />
               </div>
@@ -132,9 +125,8 @@ const SideNav = () => {
                   <div className="menu-title flex items-center justify-between">
                     <p className="text-2xl">Make-Over</p>
                     <IoIosArrowForward
-                      className={`w-6 h-6 cursor-pointer transition-transform transform ${
-                        openSections["makeover"] ? "-rotate-90" : "rotate-0"
-                      }`}
+                      className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["makeover"] ? "-rotate-90" : "rotate-0"
+                        }`}
                       onClick={() => toggleSection("makeover")}
                     />
                   </div>
@@ -147,16 +139,16 @@ const SideNav = () => {
                             <p className="text-2xl">Face</p>
                           </div>
                           <li className="item">
-                            <Link href="#">Foundation</Link>
+                            <Link href="/product/foundation">Foundation</Link>
                           </li>
                           <li className="item">
-                            <Link href="#">Concealers</Link>
+                            <Link href="/product/concealers">Concealers</Link>
                           </li>
                           <li className="item">
-                            <Link href="#">Primers</Link>
+                            <Link href="/product/primers">Primers</Link>
                           </li>
                           <li className="item">
-                            <Link href="#">Powder</Link>
+                            <Link href="/product/powder">Powder</Link>
                           </li>
                         </div>
                         <div>
@@ -164,16 +156,16 @@ const SideNav = () => {
                             <p className="text-2xl">Lips</p>
                           </div>
                           <li className="item">
-                            <Link href="#">Lip Balm</Link>
+                            <Link href="/product/lip-balm">Lip Balm</Link>
                           </li>
                           <li className="item">
-                            <Link href="#">Lip Gloss</Link>
+                            <Link href="/product/lip-gloss">Lip Gloss</Link>
                           </li>
                           <li className="item">
-                            <Link href="#">Lip pencils</Link>
+                            <Link href="/product/lip-pencils">Lip pencils</Link>
                           </li>
                           <li className="item">
-                            <Link href="#">Lipstick</Link>
+                            <Link href="/product/lipstick">Lipstick</Link>
                           </li>
                         </div>
                       </div>
@@ -190,9 +182,8 @@ const SideNav = () => {
                     <div className="menu-title flex items-center justify-between">
                       <p className="text-2xl">Skincare</p>
                       <IoIosArrowForward
-                        className={`w-6 h-6 cursor-pointer transition-transform transform ${
-                          openSections["skincare"] ? "-rotate-90" : "rotate-0"
-                        }`}
+                        className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["skincare"] ? "-rotate-90" : "rotate-0"
+                          }`}
                         onClick={() => toggleSection("skincare")}
                       />
                     </div>
