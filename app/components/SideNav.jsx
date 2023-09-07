@@ -13,10 +13,8 @@ import { groq } from "next-sanity";
 
 
 const SideNav = () => {
+  const { openSections, setOpenSections } = useStateContext();
   const [brands, setBrands] = useState([]);
-  const { isOpen, setIsOpen, openSections, setOpenSections } = useStateContext();
-
-
 
   const fetchBrands = async () => {
     const data = await client.fetch(groq`*[_type == "product"]{ brand }`);
@@ -25,12 +23,10 @@ const SideNav = () => {
   };
 
 
-
   useEffect(() => {
     // Fetch the list of brands from Sanity
     fetchBrands();
   }, []);
-
 
 
   const toggleSection = (section) => {
@@ -40,11 +36,34 @@ const SideNav = () => {
     }));
   };
 
+  const makeoverData = [
+    {
+      category: "Face",
+      items: [
+        { subcategory: "Foundation", label: "Foundation" },
+        { subcategory: "Concealers", label: "Concealers" },
+        { subcategory: "Primers", label: "Primers" },
+        { subcategory: "Powders", label: "Powders" },
+      ],
+    },
+    {
+      category: "Lips",
+      items: [
+        { subcategory: "Lip-Balm", label: "Lip Balm" },
+        { subcategory: "Lip-Gloss", label: "Lip Gloss" },
+        { subcategory: "Lip-Pencils", label: "Lip Pencils" },
+      ],
+    },
+    {
+      category: "Eyes",
+      items: [{ subcategory: "Eye-Shadow", label: "Eye Shadow" }],
+    },
+  ];
+
   return (
     <div className="w-80  -z-50 md:w-64">
       <div className="height overflow-y-scroll">
         <div className="flex justify-between flex-1">
-
           <nav className="sidebar">
             <div className="">
               <div className="menu-title flex items-center gap-44 md:gap-36">
@@ -71,102 +90,77 @@ const SideNav = () => {
                 </div>
               )}
 
+
               <div className="menu-title flex items-center justify-between mt-2">
                 <h1 className="text-3xl">Categories</h1>
               </div>
 
-
-              <div>
-                <div className="menu-title flex items-center justify-between mt-2">
-                  <p className="text-2xl">Make-Over</p>
-                  <IoIosArrowForward
-                    className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["makeover"] ? "-rotate-90" : "rotate-0"
-                      }`}
-                    onClick={() => toggleSection("makeover")}
-                  />
-                </div>
-
-                {openSections["makeover"] && (
-                  <ul className="menu-items submenu">
-                    <div className="flex justify-between">
-                      <div>
-                        <div className="menu-title">
-                          <p className="text-2xl">Face</p>
-                        </div>
-                        <li className="item">
-                          <Link href="/product/foundation">Foundation</Link>
-                        </li>
-                        <li className="item">
-                          <Link href="/product/concealers">Concealers</Link>
-                        </li>
-                        <li className="item">
-                          <Link href="/product/primers">Primers</Link>
-                        </li>
-                        <li className="item">
-                          <Link href="/product/powder">Powder</Link>
-                        </li>
+              <div className="menu-title flex items-center justify-between mt-2">
+                <p className="text-2xl">Make-Over</p>
+                <IoIosArrowForward
+                  className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["makeover"] ? "-rotate-90" : "rotate-0"}`}
+                  onClick={() => toggleSection("makeover")}
+                />
+              </div>
+              {openSections["makeover"] && (
+                <ul className="mt-2">
+                  <div className="grid grid-cols-2 gap-x-24">
+                  {makeoverData.map((categoryData, index) => (
+                    <div key={categoryData.category}>
+                      <div className="menu-title">
+                        <p className="text-2xl">{categoryData.category}</p>
                       </div>
-                      <div>
-                        <div className="menu-title">
-                          <p className="text-2xl">Lips</p>
-                        </div>
-                        <li className="item">
-                          <Link href="/product/lip-balm">Lip Balm</Link>
+                      
+                      {categoryData.items.map((item) => (
+                        <li className="item" key={item.subcategory}>
+                          <Link href={`/ProductMakeover?subcategory=${encodeURIComponent(item.subcategory)}`}>
+                            {item.label}
+                          </Link>
                         </li>
-                        <li className="item">
-                          <Link href="/product/lip-gloss">Lip Gloss</Link>
-                        </li>
-                        <li className="item">
-                          <Link href="/product/lip-pencils">Lip pencils</Link>
-                        </li>
-                        <li className="item">
-                          <Link href="/product/lipstick">Lipstick</Link>
-                        </li>
-                      </div>
+                      ))}
                     </div>
-                    <div className="menu-title">
-                      <p className="text-2xl">Eyes</p>
-                    </div>
-                    <li className="item">
-                      <Link href="#">Eye shadow</Link>
-                    </li>
-                  </ul>
-                )}
+                   
+                    
+                  ))}
+                   </div>
+                </ul>
+              )}
 
-
-                <div className="menu-title flex items-center justify-between mt-2">
-                  <p className="text-2xl">Skincare</p>
-                  <IoIosArrowForward
-                    className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["skincare"] ? "-rotate-90" : "rotate-0"
-                      }`}
-                    onClick={() => toggleSection("skincare")}
-                  />
-                </div>
-
-
-                {openSections["skincare"] && (
-                  <ul className="menu-items submenu mt-2">
-                    <li className="item">
-                      <Link href="#">Body</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Eyes</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Face</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="#">Feet, hands & Nails</Link>
-                    </li>
-                  </ul>
-                )}
+              <div className="menu-title flex items-center justify-between mt-2">
+                <p className="text-2xl">Skincare</p>
+                <IoIosArrowForward
+                  className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["skincare"] ? "-rotate-90" : "rotate-0"
+                    }`}
+                  onClick={() => toggleSection("skincare")}
+                />
               </div>
 
+              {openSections["skincare"] && (
+                <ul className="menu-items submenu mt-2">
+                  <li className="item">
+                    <Link href="/ProductMakeover?subcategory=Body-cream">Body</Link>
+                  </li>
+
+                  <li className="item">
+                    <Link href="/ProductMakeover?subcategory=eyes">Eyes</Link>
+                  </li>
+
+                  <li className="item">
+                    <Link href="/ProductMakeover?subcategory=face">Face</Link>
+                  </li>
+
+                  <li className="item">
+                    <Link href="/ProductMakeover?subcategory=feet-hands-nails">Feet, hands & Nails</Link>
+                  </li>
+                </ul>
+              )}
             </div>
           </nav>
 
         </div>
+
       </div>
+
     </div>
   );
 };

@@ -37,7 +37,11 @@ const ProductPage = () => {
 
 
   return (
-      <div className="mt-32 mx-auto mb-16 px-10 maxWidth md:px-4">
+      <div className="mt-32 mx-auto mb-96 px-10 maxWidth md:px-4">
+        <p className="text-center text-2xl uppercase mb-4">Products from {brand} brand</p>
+        <h1 className="text-2xl font-bold tracking-tight mb-3 sm:text-2xl">
+              {products.length} result{products.length === 1 ? "" : "s"}
+            </h1>
         {isLoading ? (
           <p>Loading...</p> // Display a loading message or spinner
         ) : (

@@ -159,8 +159,9 @@ width: 100%;
 }
 
 .hero-banner-container{
-  height: 800px;
+  height: 400px;
   line-height: 0.9; 
+  /* width: 72%; */
 }
 
 
@@ -200,6 +201,10 @@ width: 100%;
 
 .maxWidth{
   max-width: 120rem;
+}
+
+.widthNeeded{
+  width: 56.5rem;
 }
 
 
