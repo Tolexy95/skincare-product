@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { groq } from "next-sanity";
 import client from "@/lib/client";
 import { useSearchParams } from "next/navigation"; // Import useSearchParams
-
+import LoaderComponent from "@/app/components/LoaderComponent";
 
 const ProductPage = () => {
   const searchParams = useSearchParams(); // Use useSearchParams to get query parameters
@@ -37,17 +37,23 @@ const ProductPage = () => {
 
 
   return (
-      <div className="mt-32 mx-auto mb-96 px-10 maxWidth md:px-4">
-        <p className="text-center text-2xl uppercase mb-4">Products from {brand} brand</p>
-        <h1 className="text-2xl font-bold tracking-tight mb-3 sm:text-2xl">
-              {products.length} result{products.length === 1 ? "" : "s"}
-            </h1>
-        {isLoading ? (
-          <p>Loading...</p> // Display a loading message or spinner
-        ) : (
-          <ProductDisplay products={products} />
-        )}
-      </div>
+    <div className="mt-32 mx-auto mb-96 px-10 maxWidth md:px-4">
+      <p className="text-center text-2xl uppercase mb-4">Products from {brand} brand</p>
+      <h1 className="text-2xl font-bold tracking-tight mb-3 sm:text-2xl">
+        {products.length} result{products.length === 1 ? "" : "s"}
+      </h1>
+      {isLoading ? (
+        <div>
+          <LoaderComponent />
+
+        </div>
+
+
+        // Display a loading message or spinner
+      ) : (
+        <ProductDisplay products={products} />
+      )}
+    </div>
   );
 };
 
