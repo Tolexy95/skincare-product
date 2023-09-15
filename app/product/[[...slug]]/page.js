@@ -9,6 +9,7 @@ import { Relatedproduct } from "@/app/components/RelatedProduct";
 import LoaderComponent from "@/app/components/LoaderComponent";
 import Slider from "react-slick";
 
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -103,8 +104,9 @@ export default function ProductDetails({ params }) {
 
 
     return (
-        <main className="mt-36  lg:px-5 mb-32">
-            <div className="flex gap-12 sm:flex-col lg:gap-11 max-w-5xl mx-auto ">
+        <main className="mt-36  lg:px-5 mb-44 z-50">
+            {/* <Navbar/> */}
+            <div className="grid grid-cols-2 items-start gap-8 mx:grid-cols-1 lg:gap-11 max-w-5xl mx-auto ">
                 {/* Product */}
                 <div className={`product-card ${animationStarted ? "animate-slide-left" : ""
                     }`}>
@@ -132,7 +134,7 @@ export default function ProductDetails({ params }) {
 
 
             </div>
-        </main>
+            </main>
     );
 }
 

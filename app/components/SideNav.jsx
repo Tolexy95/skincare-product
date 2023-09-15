@@ -7,7 +7,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { FaEdit } from "react-icons/fa";
-import { useStateContext } from "@/context/SideNavBarContext";
+import { useStateContext } from "@/context/CartProductContext";
 import client from "@/lib/client";
 import { groq } from "next-sanity";
 

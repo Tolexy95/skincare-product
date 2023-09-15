@@ -4,6 +4,8 @@ import { ProductGrid } from "./components/ProductGrid";
 import BannerComponent from "./components/BannerComponent";
 import SideNav from "./components/SideNav";
 import InputComponent from "./components/InputComponent";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default async function Page({ searchParams }) {
   const { search } = searchParams
@@ -28,7 +30,8 @@ export default async function Page({ searchParams }) {
   const banner = await client.fetch(groq`*[_type == "banner"]`);
 
   return (
-    <div>
+    <div className="">
+      <Navbar/>
       <div className="py-0 px-14 mt-32 maxWidth mx-auto xs:px-6 sm:px-4 sm:mt-24">
         <div className="w-1/3 sw:hidden">
           <InputComponent />
@@ -42,6 +45,7 @@ export default async function Page({ searchParams }) {
         <div className="mt-10 mb-80">
           <ProductGrid products={products} />
         </div>
+        <Footer/>
       </div>
 
     </div>

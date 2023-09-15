@@ -18,6 +18,10 @@ module.exports = {
 
       'md': {'max': '768px'},
       // => @media (max-width: 768px) { ... }
+             
+      'mx': {'max': '550px'},
+      // => @media (max-width: 550px) { ... }
+             
 
       'sm': {'max': '430px'},
       // => @media (max-width: 430px) { ... }

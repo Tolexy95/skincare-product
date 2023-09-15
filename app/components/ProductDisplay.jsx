@@ -5,13 +5,21 @@ import Link from "next/link";
 import { XCircle } from "lucide-react";
 import { urlForImage } from "@/lib/image";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { useStateContext } from "@/context/SideNavBarContext";
+import { useStateContext } from "@/context/CartProductContext";
 
 export function ProductDisplay({ products }) {
-  const { isOpen } = useStateContext();
-  const gridColsClass = isOpen ? "grid-cols-4" : "grid-cols-5";
-  // const gridGapClass =isOpen ? ""
+  const {quantity, addToCart} = useStateContext();
 
+  // Function to format a number as Naira currency
+  const formatAsNaira = (amount) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
+ 
   if (products.length === 0) {
     return (
       <div className="mx-auto grid h-40 w-full place-items-center rounded-md border-2 border-dashed bg-gray-50 py-10 text-center dark:bg-gray-900  ">
@@ -44,26 +52,17 @@ export function ProductDisplay({ products }) {
             </div>
             <div className="">
               <h3 className="mt-5 font-medium text-sm sm:h-14">{product.name}</h3>
-              <p className="mt-2 font-medium text-xl">₦{product.price}</p>
+              <p className="mt-2 font-medium text-xl">{formatAsNaira(product.price)}</p>
             </div>
           </Link>
           <div className="flex gap-6 items-center mt-4 sm:gap-3">
             <div className="">
-              <p className="flex items-center gap-3 border border-gray-100 py-1 px-2">
-                <span className="">
-                  <AiOutlineMinus />
-                </span>
-                <span className="">0</span>
-
-                <span className="">
-                  <AiOutlinePlus />
-                </span>
-              </p>
             </div>
             <div className="">
               <button
                 type="button"
                 className="border border-gray-100 py-1 px-1"
+                onClick={() =>addToCart(product, quantity)}
               >
                 ADD TO CART
               </button>

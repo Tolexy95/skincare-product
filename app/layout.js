@@ -1,9 +1,11 @@
 import React from "react";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
-import {SideNavBarContext} from "@/context/SideNavBarContext"
+import { CartProductContext } from "@/context/CartProductContext";
+import { SiteBlob } from "./components/SiteBlob";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+
 
 export const metadata = {
   title: "Skincare Product",
@@ -14,16 +16,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <SideNavBarContext> 
+        <CartProductContext> 
           <ThemeProvider>
-            <Navbar/>
+            <SiteBlob/>
+            {/* <Navbar/> */}
             <main>{children}</main>
-            <Footer/>
+            {/* <Footer/> */}
           </ThemeProvider>
-        </SideNavBarContext>
-
-       
-      </body>
+        </CartProductContext>
+        </body>
     </html>
   );
 }

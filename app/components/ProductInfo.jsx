@@ -1,9 +1,11 @@
 "use client"
 import { useState, useEffect } from "react"
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { useStateContext } from "@/context/CartProductContext";
+
 
 export function ProductInfo({ product }) {
-    //  const { decQty, incQty, qty, onAdd, setShowCart, totalPrice } = useStateContext();
+     const { decQty, incQty, quantity, addToCart, totalPrice } = useStateContext();
     const [showFullDescription, setShowFullDescription] = useState(false);
     const initialRatings = [0, 0, 0, 0, 0];
     const [ratings, setRatings] = useState(initialRatings);
@@ -21,6 +23,15 @@ export function ProductInfo({ product }) {
         }
     }, []);
 
+    // Function to format a number as Naira currency
+  const formatAsNaira = (amount) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
 
 
     const handleStarClick = (index) => {
@@ -30,18 +41,6 @@ export function ProductInfo({ product }) {
         localStorage.setItem('userRatings', JSON.stringify(newRatings));
     };
 
-    function addToCart() {
-        const isInCart = !!cartDetails?.[product._id]
-        const item = {
-            ...product,
-            product_data: {
-                size: selectedSize,
-            },
-        }
-        isInCart ? incrementItem(item._id) : addItem(item)
-
-
-    }
 
     const handleBuyNow = () => {
         window.location.href = '/checkout';
@@ -61,27 +60,27 @@ export function ProductInfo({ product }) {
             <div className="mt-3">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight">
-                    ₦{product.price}
+                {formatAsNaira(product.price)}
                 </p>
             </div>
 
 
             <div className="mt-7 flex gap-5">
                 <p className="flex items-center gap-6 border border-gray-100 w-36 justify-center px-1  ">
-                    <span className="text-2xl cursor-pointer">
+                    <span className="text-2xl cursor-pointer" onClick={decQty}>
                         <AiOutlineMinus />
                     </span>
-                    <span className="text-2xl">1</span>
+                    <span className="text-2xl">{quantity}</span>
 
-                    <span className="text-2xl cursor-pointer">
+                    <span className="text-2xl cursor-pointer" onClick={incQty}>
                         <AiOutlinePlus />
                     </span>
                 </p>
 
                 <button
-                    // onClick={addToCart}
                     type="button"
-                    className=" bg-gray-600 py-4 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 w-1/2"
+                    className="purchase--btn"
+                    onClick={() => addToCart(product, quantity)}
                 >
                     ADD TO CART
                 </button>
@@ -89,9 +88,9 @@ export function ProductInfo({ product }) {
 
             <div className="mt-7 flex gap-6">
                 <button
-                    // onClick={addToCart}
+                    onClick={handleBuyNow}
                     type="button"
-                    className="w-11/12 bg-gray-600 py-4 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    className="purchase--btn"
                 >
                     BUY NOW
                 </button>

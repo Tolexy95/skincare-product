@@ -62,6 +62,45 @@ width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
 } */
 
+.purchase--btn {
+  height: 55px;
+  width: 100%;
+  background: #F2F2F2;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(180deg, #363636 0%, #1B1B1B 50%, #000000 100%);
+  box-shadow: 0px 0px 0px 0px #FFFFFF, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.purchase--btn:hover {
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0000003a;
+}
+
+.testWord{
+  word-wrap: break-word;
+}
+.input {
+  background-color: #303245;
+  border-radius: 5px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  font-size: 18px;
+  outline: 0;
+  padding: .5rem 1rem;
+   width: 100%;
+  
+}
+.total {
+  background-color: #303245;
+  /* width: 100%; */
+}
+
 .marquee-text{
   font-size: 29px;
   font-weight: 600;
@@ -205,6 +244,10 @@ width: 100%;
 
 .widthNeeded{
   width: 56.5rem;
+}
+
+.bgNav{
+  background-color: #464135;
 }
 
 /* CSS for sliding animation */
@@ -511,14 +554,14 @@ padding: 20px 10px;
 .flex h4{
   font-size: 20px;
 }
-.total{
+/* .total{
   display: flex;
   justify-content: space-between;
 }
 .total h3{
   font-size: 22px;
 
-}
+} */
 .remove-item{
   font-size: 24px;
   color: #f02d34;
@@ -707,15 +750,16 @@ padding: 6px;
   color: #f02d34;
 }
 .success-wrapper, .cancel-wrapper{
-  background-color: white;
-  min-height: 60vh;
+  background-color: #888a94;
+  /* height: 100vh;  */
+  margin: 0 2rem;
 
 }
 .success, .cancel{
   width: 1000px;
 margin: auto;
 margin-top: 160px;
-  background-color: #dcdcdc;
+  /* background-color: #dcdcdc; */
   padding: 50px;
   border-radius: 15px;
   display: flex;
@@ -753,7 +797,7 @@ margin-top: 160px;
 }
 .success .description .email{
   margin-left: 5px;
-  color: #f02d34;
+  color:#535354
 }
 .product-max-qty{
   margin-top: 10px;

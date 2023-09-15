@@ -4,7 +4,7 @@ import { ProductDisplay } from "@/app/components/ProductDisplay";
 import React, { useState, useEffect } from "react";
 import { groq } from "next-sanity";
 import client from "@/lib/client";
-import { useStateContext } from "@/context/SideNavBarContext";
+import { useStateContext } from "@/context/CartProductContext";
 import { useSearchParams } from "next/navigation";
 import LoaderComponent from "../components/LoaderComponent";
 
@@ -13,37 +13,10 @@ function ProductMakeover() {
   const searchParams = useSearchParams();
   const subcategory = searchParams.get('subcategory');
   const [isLoading, setIsLoading] = useState(true);
+  const[products, setProducts]=useState([])
 
 
-  const { openSections, setOpenSections, foundation,
-    setFoundation,
-    concealers,
-    setConcealers,
-    primers,
-    setPrimers,
-    powders,
-    setPowders,
-    lipBalm,
-    setLipBalm,
-    lipGloss,
-    setLipGloss,
-    lipPencils,
-    setLipPencils,
-    lipstick,
-    setLipstick,
-    eyeShadow,
-    setEyeshadow,
-    bodyCream,
-    setBodyCream,
-    eyesCream,
-    setEyesCream,
-    faceCream,
-    setFaceCream,
-    FeethandsNailsCream,
-    setFeethandsNailsCream,
-    products,
-    setProducts,
-  } = useStateContext();
+  const { } = useStateContext();
 
   const fetchProducts = async (subcategory) => {
     // Fetch products based on the subcategory

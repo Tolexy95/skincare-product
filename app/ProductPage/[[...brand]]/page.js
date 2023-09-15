@@ -7,6 +7,7 @@ import client from "@/lib/client";
 import { useSearchParams } from "next/navigation"; // Import useSearchParams
 import LoaderComponent from "@/app/components/LoaderComponent";
 
+
 const ProductPage = () => {
   const searchParams = useSearchParams(); // Use useSearchParams to get query parameters
   const brand = searchParams.get("brand"); // Get the brand from the query parameter
