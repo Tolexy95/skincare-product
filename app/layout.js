@@ -2,7 +2,7 @@ import React from "react";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { CartProductContext } from "@/context/CartProductContext";
-import { SiteBlob } from "./components/SiteBlob";
+// import { SiteBlob } from "./components/SiteBlob";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
@@ -17,8 +17,8 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
         <CartProductContext> 
-          <ThemeProvider>
-            <SiteBlob/>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {/* <SiteBlob/> */}
             {/* <Navbar/> */}
             <main>{children}</main>
             {/* <Footer/> */}

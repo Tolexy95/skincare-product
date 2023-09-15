@@ -65,7 +65,7 @@ export function ProductGrid({ products }) {
               <button
                 type="button"
                 className="border border-gray-100 py-1 px-1 w-full"
-                onClick={() =>addToCart(product, quantity)}
+                // onClick={() =>addToCart(product, quantity)}
               >
                 ADD TO CART
               </button>

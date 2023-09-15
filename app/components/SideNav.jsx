@@ -66,7 +66,7 @@ const SideNav = () => {
         <div className="flex justify-between flex-1">
           <nav className="sidebar">
             <div className="">
-              <div className="menu-title flex items-center gap-44 md:gap-36">
+              <div className="menu-title flex items-center gap-44 md:gap-36 mb-4">
                 <h1 className="text-3xl">Brand</h1>
                 <IoIosArrowForward
                   className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["brand"] ? "-rotate-90" : "rotate-0"
@@ -91,11 +91,11 @@ const SideNav = () => {
               )}
 
 
-              <div className="menu-title flex items-center justify-between mt-2">
+              <div className="menu-title flex items-center justify-between mt-2 mb-4">
                 <h1 className="text-3xl">Categories</h1>
               </div>
 
-              <div className="menu-title flex items-center justify-between mt-2">
+              <div className="menu-title flex items-center justify-between mt-2 mb-4">
                 <p className="text-2xl">Make-Over</p>
                 <IoIosArrowForward
                   className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["makeover"] ? "-rotate-90" : "rotate-0"}`}

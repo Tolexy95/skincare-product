@@ -9,8 +9,16 @@ import { useStateContext } from "../../context/CartProductContext";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 export function CartItems() {
-  const { decQty, incQty, quantity,setQuantity, onRemove, cartItems, } = useStateContext();
+  const {onRemove, cartItems, handleQuantityChange } = useStateContext();
 
+  // Function to format a number as Naira currency
+  const formatAsNaira = (amount) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
 
 
 
@@ -24,14 +32,14 @@ export function CartItems() {
       {cartItems.map((product, productIdx) => (
         <li key={product._id} className="flex py-6 sm:py-10">
           <div className=" rounded-lg border-2 border-gray-200 bg-gray-100 group-hover:opacity-75 dark:border-gray-800 ">
-              <Image
-                src={urlForImage(product.images[0]).url()}
-                alt={product.name}
-                width={200}
-                height={200}
-                className="object-cover  object-center  h-40 w-40"
-              />
-            </div>
+            <Image
+              src={urlForImage(product.images[0]).url()}
+              alt={product.name}
+              width={200}
+              height={200}
+              className="object-cover  object-center  h-40 w-40"
+            />
+          </div>
 
           <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
             <div className="relative justify-between pr-9 sm:flex sm:gap-x-6 sm:pr-0">
@@ -39,22 +47,20 @@ export function CartItems() {
                 <div className="flex justify-between">
                   <h3 className="text-sm">
 
-                {product.name}
+                    {product.name}
 
                   </h3>
                 </div>
                 <p className="mt-1 text-sm font-medium">
-                  ₦{product.price}
+                  {formatAsNaira(product.price)}
                 </p>
               </div>
 
               <div className="mt-4 sm:mt-0 sm:pr-9">
-               
-               
                 <label htmlFor={`quantity-${productIdx}`} className="sr-only">
                   Quantity, {product.name}
                 </label>
-                {/* <input
+                <input
                   id={`quantity-${productIdx}`}
                   name={`quantity-${productIdx}`}
                   type="number"
@@ -63,18 +69,18 @@ export function CartItems() {
                   max={10}
                   value={product.quantity}
                   onChange={(event) =>
-                    setQuantity(product._id, Number(event.target.value))
+                    handleQuantityChange(product._id, Number(event.target.value))
                   }
-                /> */}
-                <div className="absolute right-0 top-0">
+                />
+               <div className="absolute right-0 top-0">
                   <button
                     variant="ghost"
                     type="button"
                     className="-mr-2 inline-flex p-2"
-                    onClick={() =>onRemove(product)}
+                    onClick={() => onRemove(product)}
                   >
                     <span className="sr-only">Remove</span>
-                    <X className="h-5 w-5" aria-hidden="true"  />
+                    <X className="h-5 w-5" aria-hidden="true" />
                   </button>
                 </div>
               </div>

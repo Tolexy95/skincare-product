@@ -5,7 +5,7 @@ import { useStateContext } from "@/context/CartProductContext";
 
 
 export function ProductInfo({ product }) {
-     const { decQty, incQty, quantity, addToCart, totalPrice } = useStateContext();
+     const { decQty, incQty, quantity, addToCart} = useStateContext();
     const [showFullDescription, setShowFullDescription] = useState(false);
     const initialRatings = [0, 0, 0, 0, 0];
     const [ratings, setRatings] = useState(initialRatings);

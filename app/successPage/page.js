@@ -24,8 +24,8 @@ const Success = () => {
           <BsBagCheckFill />
         </p>
         <h2>Thank you for your order!</h2>
-        <p className="text-xl text-slate-600">Check your email inbox for the receipt.</p>
-        <p className="description text-slate-600">
+        <p className="text-xl text-white">Check your email inbox for the receipt.</p>
+        <p className="description text-white">
           If you have any questions, please email 
           <a className="email" href="mailto:order@example.com">
             order@example.com

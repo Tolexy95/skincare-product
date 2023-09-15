@@ -62,7 +62,7 @@ export function ProductDisplay({ products }) {
               <button
                 type="button"
                 className="border border-gray-100 py-1 px-1"
-                onClick={() =>addToCart(product, quantity)}
+                // onClick={() =>addToCart(product, quantity)}
               >
                 ADD TO CART
               </button>

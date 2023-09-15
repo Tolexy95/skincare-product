@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 
 
 const CheckOutPage = () => {
+  const cartRef = useRef();
     const router =useRouter()
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
@@ -15,6 +16,14 @@ const CheckOutPage = () => {
   const { totalPrice } = useStateContext();
 
   
+   // Function to format a number as Naira currency
+   const formatAsNaira = (amount) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
   
   const onSuccess = (reference) => {
     // Use router to navigate to the success page
@@ -32,10 +41,10 @@ const CheckOutPage = () => {
   };
 
   return (
-    <div className="mt-32 max-w-lg mx-auto mb-36">
+    <div className="mainDiv mt-32 max-w-lg mx-auto mb-36" ref={cartRef}>
       <div className="w-full">
-      <div className="flex gap-9 mb-5 items-center">
-         <label className="w-36 text-xl">Full Name:</label>
+      <div className="flex  mb-5 items-center">
+         <label>Full Name:</label>
        
         <input
           type="text"
@@ -45,8 +54,8 @@ const CheckOutPage = () => {
         />
       </div>
 
-      <div className="flex gap-9 mb-5 items-center">
-        <label className="w-36 text-xl">Email Address:</label>
+      <div className="flex  mb-5 items-center">
+        <label >Email Address:</label>
         <input
           type="text"
           value={email}
@@ -55,8 +64,8 @@ const CheckOutPage = () => {
         />
       </div>
 
-      <div className="flex gap-9 mb-5 items-center">
-        <label className="w-36 text-xl">Phone Number:</label>
+      <div className="flex  mb-5 items-center">
+        <label>Phone Number:</label>
         <input
           type="text"
           value={phoneNumber}
@@ -64,10 +73,10 @@ const CheckOutPage = () => {
           className="input"
         />
       </div>
-      <div className="flex gap-9 mb-5 items-center">
-        <label className="w-36 text-xl">Address:</label>
-        <input
-          type="text"
+      <div className="flex  mb-5 items-center">
+        <label>Address:</label>
+        <textarea
+          // type="text"
           value={address}
           onInput={(e) => setAddress(e.target.value)}
           className="input"
@@ -75,9 +84,9 @@ const CheckOutPage = () => {
       </div>
       </div>
 
-      <div className=" flex mb-10 gap-9 items-center">
+      <div className=" flex mb-10 gap-6 items-center">
         <h3 className="text-xl w-36">Subtotal:</h3>
-        <h3 className="input text-lg w-min">₦{totalPrice}</h3>
+        <h3 className="input text-lg w-min"> {formatAsNaira(totalPrice)}</h3>
       </div>
 
       <div className="btn-container">

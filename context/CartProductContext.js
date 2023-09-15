@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,32 +10,48 @@ export const CartProviderContext = createContext();
 export const CartProductContext = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openSections, setOpenSections] = useState({});
-  const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
  
+  const initialRender = useRef(true);
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem('cartItems');
-    const storedTotalPrice = localStorage.getItem('totalPrice');
-    const storedTotalQuantities = localStorage.getItem('totalQuantities');
-
-    if (storedCartItems) setCartItems(JSON.parse(storedCartItems));
-    if (storedTotalPrice) setTotalPrice(parseFloat(storedTotalPrice));
-    if (storedTotalQuantities) setTotalQuantities(parseInt(storedTotalQuantities));
+      if (JSON.parse(localStorage.getItem("cartItems"))) {
+          const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+          setCartItems([...cartItems, ...storedCartItems]);
+      }
   }, []);
 
   useEffect(() => {
-    // Update local storage when state changes
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    localStorage.setItem('totalPrice', totalPrice);
-    localStorage.setItem('totalQuantities', totalQuantities);
-  }, [cartItems, totalPrice, totalQuantities]);
+    if (JSON.parse(localStorage.getItem("totalQuantities"))) {
+      const storedTotalQuantities = JSON.parse(localStorage.getItem("totalQuantities"));
+      setTotalQuantities(storedTotalQuantities);
+    }
+  }, []);
+  
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("totalPrice"))) {
+      const storedTotalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+      setTotalPrice(storedTotalPrice);
+    }
+  }, []);
 
+  
+  useEffect(() => {
+      if (initialRender.current) {
+          initialRender.current = false;
+          return;
+      }
+      window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      window.localStorage.setItem("totalQuantities", JSON.stringify(totalQuantities));
+      window.localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+  }, [cartItems,totalQuantities,totalPrice]);
 
-
+    
+  
   let foundProduct;
   let index;
   
@@ -58,9 +74,10 @@ export const CartProductContext = ({ children }) => {
     }
     // Reset quantity to 1 after adding an item to the cart
   setQuantity(1);
-
     toast.success(`${quantity} ${product.name} added to the cart.`);
+
   };
+
 
   const incQty = () => {
     setQuantity((prevQty) => prevQty + 1);
@@ -82,8 +99,30 @@ export const CartProductContext = ({ children }) => {
     setCartItems(newCartItems);
   };
 
-
-
+  const handleQuantityChange = (productId, newQuantity) => {
+    // Find the index of the product in the cartItems array
+    const foundProductIndex = cartItems.findIndex((item) => item._id === productId);
+  
+    if (foundProductIndex !== -1) {
+      // Create a copy of the cartItems array to avoid mutating state directly
+      const updatedCartItems = [...cartItems];
+  
+      // Update the quantity of the found product
+      updatedCartItems[foundProductIndex].quantity = newQuantity;
+  
+      // Update the state with the modified cartItems array
+      setCartItems(updatedCartItems);
+  
+      // Recalculate totalQuantities and totalPrice using the updatedCartItems
+      const updatedTotalQuantities = updatedCartItems.reduce((acc, item) => acc + item.quantity, 0);
+      setTotalQuantities(updatedTotalQuantities);
+  
+      const updatedTotalPrice = updatedCartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      setTotalPrice(updatedTotalPrice);
+    }
+  };
+  
+  
 
   
   const objectPassed = {
@@ -91,8 +130,6 @@ export const CartProductContext = ({ children }) => {
      setIsOpen,
     openSections, 
     setOpenSections,
-      showCart,
-      setShowCart,
       cartItems,
       totalPrice,
       totalQuantities,
@@ -101,7 +138,7 @@ export const CartProductContext = ({ children }) => {
       incQty,
       decQty,
       addToCart,
-      // toggleCartItemQuanitity,
+      handleQuantityChange,
       onRemove,
       setCartItems,
       setTotalPrice,
