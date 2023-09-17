@@ -43,6 +43,9 @@ const Navbar = () => {
           </button>
           </Link>
         </div>
+        <div>
+          <Link href="/signIn">Login</Link>
+        </div>
 
         <div className="Admin">
           {process.env.NODE_ENV === "development" && (

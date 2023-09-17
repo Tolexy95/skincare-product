@@ -6,23 +6,30 @@ import Link from "next/link";
 
 export function CartSummary() {
   const [isLoading, setLoading] = useState(false)
-  const {totalPrice } = useStateContext();
+  const { totalPrice } = useStateContext();
 
- // Function to format a number as Naira currency
- const formatAsNaira = (amount) => {
-  return new Intl.NumberFormat('en-NG', {
-    style: 'currency',
-    currency: 'NGN',
-    minimumFractionDigits: 0,
-  }).format(amount);
-};
+  // Function to format a number as Naira currency
+  const formatAsNaira = (amount) => {
+    return new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
 
-const navigateToCheckout = (event) => {
-  event.preventDefault();
-  window.location.href = '/checkout'; 
- 
-}
- 
+   // Calculate delivery estimate as 2% of the subtotal and round up to the nearest whole number
+const deliveryEstimate = Math.ceil(totalPrice * 0.02);
+
+
+   // Calculate the order total
+  const orderTotal = totalPrice + deliveryEstimate;
+
+  const navigateToCheckout = (event) => {
+    event.preventDefault();
+    window.location.href = '/checkout';
+
+  }
+
   return (
     <section
       aria-labelledby="summary-heading"
@@ -39,28 +46,28 @@ const navigateToCheckout = (event) => {
         </div>
         <div className="flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-600">
           <dt className="flex items-center text-sm">
-            <span>Shipping estimate</span>
+            <span>Delivery estimate</span>
           </dt>
           <dd className="text-sm font-medium">
-            0
+          {formatAsNaira(deliveryEstimate)}
           </dd>
         </div>
         <div className="flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-600">
           <dt className="text-base font-medium">Order total</dt>
           <dd className="text-base font-medium">
-          {formatAsNaira(totalPrice)}
+          {formatAsNaira(orderTotal)}
           </dd>
         </div>
       </dl>
-     
-     <div className="flex justify-center">
-     <button className="mt-3 purchase--btn" onClick={navigateToCheckout} >
-proceed to checkout
-      {/* <Link href="/checkout">Proceed to checkout</Link> */}
-      </button>
-     </div>
-     
-     
+
+      <div className="flex justify-center">
+        <button className="mt-3 purchase--btn" onClick={navigateToCheckout} >
+          proceed to checkout
+
+        </button>
+      </div>
+
+
     </section>
   )
 }
