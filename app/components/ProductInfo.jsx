@@ -2,13 +2,14 @@
 import { useState, useEffect } from "react"
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { useStateContext } from "@/context/CartProductContext";
-
+import { useAuth } from '@/context/AuthContext';
 
 export function ProductInfo({ product }) {
      const { decQty, incQty, quantity, addToCart} = useStateContext();
     const [showFullDescription, setShowFullDescription] = useState(false);
     const initialRatings = [0, 0, 0, 0, 0];
     const [ratings, setRatings] = useState(initialRatings);
+    const { isLoggedIn } = useAuth(); 
 
 
 
@@ -42,10 +43,17 @@ export function ProductInfo({ product }) {
     };
 
 
-    const handleBuyNow = () => {
-        window.location.href = '/checkout';
+    const handleBuyNow = (event) => {
+        event.preventDefault();
 
+    if (isLoggedIn) {
+      // User is logged in, navigate to the checkout page
+      window.location.href = "/checkout";
+    } else {
+      alert("You need to login to access this page.");
     }
+    }
+    
 
 
     return (

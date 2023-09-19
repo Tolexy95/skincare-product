@@ -6,24 +6,18 @@ import SideNav from "./components/SideNav";
 import InputComponent from "./components/InputComponent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ProductSort from "./components/ProductSort";
 import WelcomeUser from "./components/welcome";
 
 
 export default async function Page({searchParams}) {
-  const { date = "desc", price, search } = searchParams
+  const { search } = searchParams
 
-  const priceOrder = price ? `|order(price ${price})` : ""
-
-  const dateOrder = date ? `|order( _createdAt ${date})` : ""
-
-  const order = `${priceOrder} ${dateOrder}`
   const productFilter = `_type == "product"`
   const searchFilter = search ? `&& name match "${search}"` : ""
   const filter = `*[${productFilter} ${searchFilter}]`
 
   const products = await client.fetch(
-    groq`${filter} ${order}{
+    groq`${filter} {
       _createdAt,
       name,
       brand,
@@ -46,17 +40,15 @@ export default async function Page({searchParams}) {
         <div className="w-1/3 sw:hidden">
           <InputComponent />
         </div>
-        <div className="absolute left-3/4 top-24">
+        <div className="absolute left-3/4 top-24 sm:left-1/4 sm:top-36">
           <WelcomeUser/>
         </div>
-        <div className="flex gap-7 sm:flex-col sm:mt-10">
+        <div className="flex gap-7 sm:flex-col sm:mt-24">
           <div> <SideNav /></div>
 
           <BannerComponent heroBanner={banner.length && banner[0]} />
         </div>
-        <div className=" mt-6 absolute leftSort"><ProductSort /></div>
-
-        <div className="mt-24 mb-80">
+        <div className="mt-12 mb-80">
 
           <ProductGrid products={products} />
         </div>

@@ -44,8 +44,10 @@ const{signUpWithEmailAndPassword} =useAuth()
   };
 
   return (
-    <section className="mt-10 max-w-lg m-auto form bgNav">
-      <form className="form" onSubmit={handleSignUp}>
+    <section className="h-screen relative overflow-hidden">
+      <div className="signBackground absolute top-0 left-0 w-full h-full z-0">
+      <div className="flex justify-end sm:block">
+      <form className="form mt-10 mr-32" onSubmit={handleSignUp}>
         <p className="title">Register</p>
         <p className="message">Signup now and get full access.</p>
 
@@ -123,7 +125,7 @@ const{signUpWithEmailAndPassword} =useAuth()
         </p>
       </form>
 
-      <div className="social-buttons">
+      {/* <div className="social-buttons">
         <button className="social-button google">
           <svg class="icon" viewBox="0 0 24 24">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
@@ -134,7 +136,8 @@ const{signUpWithEmailAndPassword} =useAuth()
           </svg>
           <span>Sign up with Google</span>
         </button>
-
+        </div> */}
+      </div>
       </div>
     </section>
   );

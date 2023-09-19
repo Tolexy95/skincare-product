@@ -63,12 +63,12 @@ const {signInEmail, resetPassword, signInWithGoogle} =useAuth()
     };
 
     return (
-        <section className="h-screen relative overflow-hidden">
-            <div className="signBackground absolute top-0 left-0 w-full h-full z-0">
-        <div className="flex justify-end">
+        <section className="h-screen relative overflow-hidden ">
+            <div className="signBackground absolute top-0 left-0 w-full h-full z-0 ">
+        <div className="flex justify-end sm:block">
             <div className="form-container mt-10 mr-32">
                 <div className="logo-container">
-                    Welcome Back!
+                    Welcome!
                 </div>
 
                 <div className="social-buttons">

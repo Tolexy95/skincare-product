@@ -56,21 +56,16 @@ export function ProductGrid({ products }) {
               </h3>
               <p className="mt-2 font-medium text-xl">{formatAsNaira(product.price)}</p>
             </div>
-          </Link>
-          <div className="flex gap-6 items-center mt-4 sm:gap-3">
-            <div className="">
-            
-            </div>
             <div className="">
               <button
                 type="button"
-                className="border border-gray-100 py-1 px-1 w-full"
-                // onClick={() =>addToCart(product, quantity)}
+                className="border border-gray-100 py-1 px-1 w-full mt-6"
+                
               >
-                ADD TO CART
+                VIEW MORE
               </button>
             </div>
-          </div>
+          </Link>
         </div>
       ))}
     </div>

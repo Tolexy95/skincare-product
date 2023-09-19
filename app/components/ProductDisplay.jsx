@@ -64,7 +64,7 @@ export function ProductDisplay({ products }) {
                 className="border border-gray-100 py-1 px-1"
                 // onClick={() =>addToCart(product, quantity)}
               >
-                ADD TO CART
+                  VIEW MORE
               </button>
             </div>
           </div>

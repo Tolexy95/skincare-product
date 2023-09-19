@@ -48,7 +48,7 @@ export function Relatedproduct({products }) {
                 type="button"
                 className="border border-gray-100 py-1 px-1"
               >
-                ADD TO CART
+                  VIEW MORE
               </button>
             </div>
           </div>
