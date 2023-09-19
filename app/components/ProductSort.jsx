@@ -14,6 +14,7 @@ const ProductSort = () => {
     { name: "Price, high to low", value: "price=desc" },
   ];
 
+ 
   const handleSortChange = (value) => {
    router.replace(value)
   };

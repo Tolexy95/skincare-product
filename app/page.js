@@ -7,6 +7,8 @@ import InputComponent from "./components/InputComponent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProductSort from "./components/ProductSort";
+import WelcomeUser from "./components/welcome";
+
 
 export default async function Page({searchParams}) {
   const { date = "desc", price, search } = searchParams
@@ -39,9 +41,13 @@ export default async function Page({searchParams}) {
   return (
     <div className="">
       <Navbar />
-      <div className="py-0 px-14 mt-32 maxWidth mx-auto xs:px-6 sm:px-4 sm:mt-24">
+     
+      <div className="py-0 px-14 mt-44 maxWidth mx-auto xs:px-6 sm:px-4 sm:mt-24">
         <div className="w-1/3 sw:hidden">
           <InputComponent />
+        </div>
+        <div className="absolute left-3/4 top-24">
+          <WelcomeUser/>
         </div>
         <div className="flex gap-7 sm:flex-col sm:mt-10">
           <div> <SideNav /></div>

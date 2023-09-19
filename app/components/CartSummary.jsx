@@ -3,10 +3,13 @@
 import { useState } from "react"
 import { useStateContext } from "@/context/CartProductContext";
 import Link from "next/link";
+import { useAuth } from '@/context/AuthContext';
+
 
 export function CartSummary() {
   const [isLoading, setLoading] = useState(false)
-  const { totalPrice } = useStateContext();
+  const { totalPrice} = useStateContext();
+  const { isLoggedIn } = useAuth(); 
 
   // Function to format a number as Naira currency
   const formatAsNaira = (amount) => {
@@ -26,9 +29,14 @@ const deliveryEstimate = Math.ceil(totalPrice * 0.02);
 
   const navigateToCheckout = (event) => {
     event.preventDefault();
-    window.location.href = '/checkout';
 
-  }
+    if (isLoggedIn) {
+      // User is logged in, navigate to the checkout page
+      window.location.href = "/checkout";
+    } else {
+      alert("You need to login to access this page.");
+    }
+  };
 
   return (
     <section

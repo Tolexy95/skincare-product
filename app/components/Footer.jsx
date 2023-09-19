@@ -38,9 +38,6 @@ const closeModal = () => {
           </Link>
         </div>
         <div className="pb-6">
-          {/* <Link href="#" className="text-sm leading-6">
-            About
-          </Link> */}
           <button
               onClick={() => handleLinkClick("About")}
               className="text-sm leading-6 cursor-pointer"
@@ -49,9 +46,6 @@ const closeModal = () => {
             </button>
         </div>
         <div className="pb-6">
-          {/* <Link href="#" className="text-sm leading-6">
-            Terms & Conditions
-          </Link> */}
           <button
               onClick={() => handleLinkClick("TermsAndConditions")}
               className="text-sm leading-6 cursor-pointer"
@@ -61,9 +55,6 @@ const closeModal = () => {
         </div>
 
         <div className="pb-6">
-          {/* <Link href="#" className="text-sm leading-6">
-            Shipping & Return Policy
-          </Link> */}
           <button
               onClick={() => handleLinkClick("ShippingAndReturnPolicy")}
               className="text-sm leading-6 cursor-pointer"
@@ -73,9 +64,6 @@ const closeModal = () => {
         </div>
 
         <div className="pb-6">
-          {/* <Link href="#" className="text-sm leading-6">
-            Privacy Policy
-          </Link> */}
           <button
               onClick={() => handleLinkClick("PrivacyPolicy")}
               className="text-sm leading-6 cursor-pointer"
@@ -86,10 +74,6 @@ const closeModal = () => {
         </div>
 
         <div className="pb-6">
-          {/* <Link href="#" className="text-sm leading-6">
-            FAQ
-          </Link> */}
-
           <button
               onClick={() => handleLinkClick("FAQ")}
               className="text-sm leading-6 cursor-pointer"

@@ -64,7 +64,7 @@ const SideNav = () => {
     <div className="w-80  -z-50 md:w-64">
       <div className="height overflow-y-scroll">
         <div className="flex justify-between flex-1">
-          <nav className="sidebar">
+          <nav className="">
             <div className="">
               <div className="menu-title flex items-center gap-44 md:gap-36 mb-4">
                 <h1 className="text-3xl">Brand</h1>
@@ -78,7 +78,7 @@ const SideNav = () => {
 
               {openSections["brand"] && (
                 <div>
-                  <ul className="menu-items mt-2">
+                  <ul className="mt-2">
                     {brands.map((brand) => (
                       <li className="item" key={brand}>
                         <Link href={`/ProductPage?brand=${encodeURIComponent(brand)}`}>
@@ -91,11 +91,11 @@ const SideNav = () => {
               )}
 
 
-              <div className="menu-title flex items-center justify-between mt-2 mb-4">
+              <div className="mflex items-center justify-between mt-2 mb-4">
                 <h1 className="text-3xl">Categories</h1>
               </div>
 
-              <div className="menu-title flex items-center justify-between mt-2 mb-4">
+              <div className="flex items-center justify-between mt-2 mb-4">
                 <p className="text-2xl">Make-Over</p>
                 <IoIosArrowForward
                   className={`w-6 h-6 cursor-pointer transition-transform transform ${openSections["makeover"] ? "-rotate-90" : "rotate-0"}`}
@@ -107,7 +107,7 @@ const SideNav = () => {
                   <div className="grid grid-cols-2 gap-x-24">
                   {makeoverData.map((categoryData, index) => (
                     <div key={categoryData.category}>
-                      <div className="menu-title">
+                      <div className="">
                         <p className="text-2xl">{categoryData.category}</p>
                       </div>
                       

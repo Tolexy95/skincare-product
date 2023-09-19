@@ -1,10 +1,8 @@
 import React from "react";
-import "./globals.css";
+import "./style/globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { CartProductContext } from "@/context/CartProductContext";
-// import { SiteBlob } from "./components/SiteBlob";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import { AuthProductContext } from "@/context/AuthContext";
 
 
 export const metadata = {
@@ -16,14 +14,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <AuthProductContext>
         <CartProductContext> 
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {/* <SiteBlob/> */}
-            {/* <Navbar/> */}
             <main>{children}</main>
-            {/* <Footer/> */}
           </ThemeProvider>
         </CartProductContext>
+        </AuthProductContext>
         </body>
     </html>
   );

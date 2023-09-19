@@ -1,6 +1,7 @@
 import { CartItems } from "../components/CartItems"
 import { CartSummary } from "../components/CartSummary"
 
+
 export default function Page() {
   return (
     <div className="mt-24 mx-auto max-w-7xl">

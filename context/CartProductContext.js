@@ -14,6 +14,7 @@ export const CartProductContext = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantities, setTotalQuantities] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  
 
  
   const initialRender = useRef(true);
@@ -39,6 +40,13 @@ export const CartProductContext = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("orderTotal"))) {
+      const storedOrderTotal= JSON.parse(localStorage.getItem("orderTotal"));
+      setTotalPrice(storedOrderTotal);
+    }
+  }, []);
+
   
   useEffect(() => {
       if (initialRender.current) {
@@ -50,10 +58,8 @@ export const CartProductContext = ({ children }) => {
       window.localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
   }, [cartItems,totalQuantities,totalPrice]);
 
-    
-  
+
   let foundProduct;
-  let index;
   
   const addToCart = (product, quantity) => {
     const checkProductInCart = cartItems.find((item) => item._id === product._id);

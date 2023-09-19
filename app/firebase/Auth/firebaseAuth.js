@@ -1,11 +1,12 @@
 // firebaseAuth.js
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword} from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "./firebase"; // Import your Firebase configuration
+import { firebaseConfig } from "../firebase";
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+ export const auth = getAuth(app);
 
 // Firebase authentication functions
 export const signUpWithEmailAndPassword = async (email, password) => {
@@ -23,26 +24,20 @@ export const signUpWithEmailAndPassword = async (email, password) => {
 
 export const signInEmail = async (email, password) => {
   try {
-    // Check if the user exists by attempting to sign in with provided credentials
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    console.log(user);
 
-    // Save user credentials (example: store in local storage)
-    localStorage.setItem("user", JSON.stringify(user));
-    
+    // Save user credentials and additional info (email and full name)
+    const userInfo = {
+      email: user.email,
+      fullName: user.displayName, // Assuming you have stored the full name in the user's profile
+    };
+    localStorage.setItem('user', JSON.stringify(userInfo));
+
     return user;
   } catch (error) {
-    // Handle specific error codes
-    if (error.code === 'auth/user-not-found') {
-      // User does not exist, prompt to sign up
-      throw new Error("User does not exist. Please sign up first.");
-    } else if (error.code === 'auth/wrong-password') {
-      // Incorrect password, credentials don't match
-      throw new Error("Incorrect email or password. Please try again.");
-    } else {
-      console.error("Error signing in:", error);
-      throw error;
-    }
+
   }
 };
 
@@ -96,4 +91,10 @@ export const listenToAuthStateChanges = (callback) => {
     }
     callback(user);
   });
+};
+
+// Function to check if the user is logged in
+export const isLoggedIn = () => {
+  const user = localStorage.getItem("user");
+  return !!user;
 };

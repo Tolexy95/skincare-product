@@ -8,7 +8,7 @@ import { CartItemsEmpty } from "./CartItemEmpty"
 import { useStateContext } from "../../context/CartProductContext";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
-export function CartItems() {
+export function  CartItems() {
   const {onRemove, cartItems, handleQuantityChange } = useStateContext();
 
   // Function to format a number as Naira currency
