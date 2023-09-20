@@ -33,7 +33,7 @@
    width: 40%;
  }
 
- .input {
+ .boxItem {
    background-color: #fff9f9f1;
    border-radius: 4px;
    border: none;
@@ -412,7 +412,6 @@
   border-radius: 10px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
 }
-
 
 
 .form-container button:active {

@@ -59,7 +59,7 @@ export const CartProductContext = ({ children }) => {
   }, [cartItems,totalQuantities,totalPrice]);
 
 
-  let foundProduct;
+  let getProduct;
   
   const addToCart = (product, quantity) => {
     const checkProductInCart = cartItems.find((item) => item._id === product._id);
@@ -97,11 +97,11 @@ export const CartProductContext = ({ children }) => {
   };
 
   const onRemove = (product) => {
-    foundProduct = cartItems.find((item) => item._id === product._id);
+    getProduct = cartItems.find((item) => item._id === product._id);
     const newCartItems = cartItems.filter((item) => item._id !== product._id);
 
-    setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
-    setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
+    setTotalPrice((prevTotalPrice) => prevTotalPrice - getProduct.price * getProduct.quantity);
+    setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - getProduct.quantity);
     setCartItems(newCartItems);
   };
 

@@ -22,21 +22,21 @@ export function  CartItems() {
 
 
 
-  if (cartItems.length === 0) return <CartItemsEmpty />
+  if (cartItems.length === 0) return <CartItemsEmpty/>
 
   return (
     <ul
       role="list"
-      className="divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-500 dark:border-gray-500 -z-50 "
+      className="divide-y divide-gray-600 border-y border-gray-600 dark:divide-gray-500 dark:border-gray-500 -z-50 "
     >
       {cartItems.map((product, productIdx) => (
         <li key={product._id} className="flex py-6 sm:py-10">
-          <div className=" rounded-lg border-2 border-gray-200 bg-gray-100 group-hover:opacity-75 dark:border-gray-800 ">
+          <div className=" rounded-lg border-5 border-gray-600 bg-gray-100 group-hover:opacity-75 dark:border-gray-800 ">
             <Image
               src={urlForImage(product.images[0]).url()}
               alt={product.name}
-              width={200}
-              height={200}
+              width={600}
+              height={600}
               className="object-cover  object-center  h-40 w-40"
             />
           </div>

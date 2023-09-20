@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import { useState, createContext, useContext, useEffect, useRef } from "react";
+import { useState, createContext, useContext, useEffect} from "react";
 import { auth } from "@/app/firebase/Auth/firebaseAuth";
 import {
   createUserWithEmailAndPassword,
@@ -61,7 +61,6 @@ export const AuthProductContext = ({ children }) => {
         password
       );
       const user = userCredential.user;
-      // You can save user data to your database here
       return user;
     } catch (error) {
       console.error("Error signing up:", error);
@@ -73,12 +72,9 @@ export const AuthProductContext = ({ children }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log(user);
-
-      // Save user credentials and additional info (email and full name)
       const userInfo = {
         email: user.email,
-        fullName: user.displayName, // Assuming you have stored the full name in the user's profile
+        fullName: user.displayName, 
       };
       localStorage.setItem("user", JSON.stringify(userInfo));
 
@@ -89,24 +85,10 @@ export const AuthProductContext = ({ children }) => {
     }
   };
 
-  const signInWithGoogle = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const userCredential = await signInWithPopup(auth, provider);
-      const user = userCredential.user;
-      // Save user credentials (example: store in local storage)
-      localStorage.setItem("user", JSON.stringify(user));
-      return user;
-    } catch (error) {
-      console.error("Error signing in with Google:", error);
-      throw error;
-    }
-  };
-
   const signOutUser = async () => {
     try {
       await signOut(auth);
-      // Clear user credentials (example: remove from local storage)
+      // Clear user credentials 
       localStorage.removeItem("user");
     } catch (error) {
       console.error("Error signing out:", error);
@@ -117,37 +99,18 @@ export const AuthProductContext = ({ children }) => {
   const resetPassword = async (email) => {
     try {
       await sendPasswordResetEmail(auth, email);
-      // Email sent, inform the user
     } catch (error) {
       console.error("Error sending password reset email:", error);
       throw error;
     }
   };
 
-  const listenToAuthStateChanges = (callback) => {
-    return onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in
-        // Save user credentials (example: store in local storage)
-        localStorage.setItem("user", JSON.stringify(user));
-      } else {
-        // User is signed out
-        // Clear user credentials (example: remove from local storage)
-        localStorage.removeItem("user");
-      }
-      callback(user);
-    });
-  };
-
-  
-
+ 
   const contextValue = {
     signUpWithEmailAndPassword,
     signInEmail,
-    signInWithGoogle,
     signOutUser,
     resetPassword,
-    listenToAuthStateChanges,
     isLoggedIn,
     user, 
     setUser,

@@ -87,9 +87,6 @@ const Navbar = () => {
                 <Link href="/signUp" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   Signup
                 </Link>
-                <Link href="/account" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                 Account
-                </Link>
                 <button href="/logout" onClick={handleLogOut} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" disabled={isLoading}>
                  Log out
                  {isLoading && <LoaderComponent />} 

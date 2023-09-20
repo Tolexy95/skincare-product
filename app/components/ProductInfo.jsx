@@ -9,6 +9,7 @@ export function ProductInfo({ product }) {
     const [showFullDescription, setShowFullDescription] = useState(false);
     const initialRatings = [0, 0, 0, 0, 0];
     const [ratings, setRatings] = useState(initialRatings);
+    const [isAddedToCart, setIsAddedToCart] = useState(false);
     const { isLoggedIn } = useAuth(); 
 
 
@@ -42,6 +43,10 @@ export function ProductInfo({ product }) {
         localStorage.setItem('userRatings', JSON.stringify(newRatings));
     };
 
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
+        setIsAddedToCart(true); 
+      };
 
     const handleBuyNow = (event) => {
         event.preventDefault();
@@ -86,12 +91,13 @@ export function ProductInfo({ product }) {
                 </p>
 
                 <button
-                    type="button"
-                    className="purchase--btn"
-                    onClick={() => addToCart(product, quantity)}
-                >
-                    ADD TO CART
-                </button>
+          type="button"
+          className="purchase--btn"
+          onClick={handleAddToCart}
+          disabled={isAddedToCart} // Disable the button if item is already in the cart
+        >
+          {isAddedToCart ? "Added to Cart" : "ADD TO CART"}
+        </button>
             </div>
 
             <div className="mt-7 flex gap-6">

@@ -19,7 +19,6 @@ const InputComponent = () => {
           // If there is a search query, update the URL with the search parameter
           router.replace(`/?search=${searchQuery}`);
         }
-        // router.replace(`/?search=${searchQuery}`)
       }
       
 

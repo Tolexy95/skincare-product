@@ -20,9 +20,9 @@ const BannerComponent = ({ heroBanner }) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    centerMode: true, // Set centerMode to true
-    centerPadding: "0", // Remove the padding for centerMode
-    arrows: false, // Remove the default arrows
+    centerMode: true, 
+    centerPadding: "0", 
+    arrows: false, 
   };
 
   return (
@@ -39,10 +39,6 @@ const BannerComponent = ({ heroBanner }) => {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          {/* <div className="text-center max-w-sm mx-auto py-14 bgNav">
-            <h3 className="text-2xl textSmall">{smallText}</h3>
-            <p className="text-xl mt-5">{largeText2}</p>
-          </div> */}
         </div>
         </div>
 
@@ -57,10 +53,6 @@ const BannerComponent = ({ heroBanner }) => {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          {/* <div className="text-center max-w-sm mx-auto py-14">
-            <h3 className="text-2xl textSmall">Static Heading for Slide 2</h3>
-            <p className="text-xl mt-5">Static Content for Slide 2</p>
-          </div> */}
         </div>
         </div>
       </Slider>

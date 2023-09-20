@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useStateContext } from "@/context/CartProductContext";
 import { PaystackButton } from "react-paystack";
 import { useRouter } from "next/navigation";
-import { withAuth } from "../utils/withAuth";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import LoaderComponent from "../components/LoaderComponent";
@@ -12,7 +11,6 @@ import { useAuth } from "@/context/AuthContext";
 
 
 const CheckOutPage = () => {
-  const cartRef = useRef();
   const router = useRouter();
   const {
     email, 
@@ -49,7 +47,6 @@ const CheckOutPage = () => {
       setIsLoading(true);
       const docRef = await addDoc(collection(db, "users"), userData);
       console.log("Document written with ID: ", docRef.id);
-      // router.push("/successPage");
     } catch (error) {
       console.error("Error adding document: ", error);
     } finally {
@@ -67,28 +64,27 @@ const CheckOutPage = () => {
     window.location.href = "/";
   };
 
-  useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("user"));
-    if (userInfo) {
-      setEmail(userInfo.email);
-      setFullName(userInfo.fullName);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const userInfo = JSON.parse(localStorage.getItem("user"));
+  //   if (userInfo) {
+  //     setEmail(userInfo.email);
+  //     setFullName(userInfo.fullName);
+  //   }
+  // }, []);
 
   return (
-    <div className="mainDiv mt-32 max-w-lg mx-auto mb-36" ref={cartRef}>
+    <div className="mainDiv mt-32 max-w-lg mx-auto mb-36">
       {isloading ? (
         <LoaderComponent />
       ) : (
         <div className="w-full">
-          {/* Checkout Form */}
           <div className="flex  mb-5 items-center">
             <label>Full Name:</label>
             <input
               type="text"
               value={fullName}
               onInput={(e) => setFullName(e.target.value)}
-              className="input"
+              className="boxItem"
             />
           </div>
 
@@ -98,7 +94,7 @@ const CheckOutPage = () => {
               type="text"
               value={email}
               onInput={(e) => setEmail(e.target.value)}
-              className="input"
+              className="boxItem"
             />
           </div>
 
@@ -108,7 +104,7 @@ const CheckOutPage = () => {
               type="text"
               value={phoneNumber}
               onInput={(e) => setPhoneNumber(e.target.value)}
-              className="input"
+              className="boxItem"
             />
           </div>
           <div className="flex  mb-5 items-center">
@@ -116,13 +112,13 @@ const CheckOutPage = () => {
             <textarea
               value={address}
               onInput={(e) => setAddress(e.target.value)}
-              className="input"
+              className="boxItem"
             />
           </div>
 
           <div className="flex mb-10 gap-6 items-center">
             <h3 className="text-xl w-36">Subtotal:</h3>
-            <h3 className="input text-lg w-min">
+            <h3 className="boxItem text-lg w-min">
               {formatAsNaira(orderTotal)}
             </h3>
           </div>
