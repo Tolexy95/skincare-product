@@ -64,14 +64,6 @@ const CheckOutPage = () => {
     window.location.href = "/";
   };
 
-  // useEffect(() => {
-  //   const userInfo = JSON.parse(localStorage.getItem("user"));
-  //   if (userInfo) {
-  //     setEmail(userInfo.email);
-  //     setFullName(userInfo.fullName);
-  //   }
-  // }, []);
-
   return (
     <div className="mainDiv mt-32 max-w-lg mx-auto mb-36">
       {isloading ? (

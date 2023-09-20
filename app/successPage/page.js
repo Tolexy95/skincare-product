@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { useStateContext } from "../../context/CartProductContext";
 import { runFireworks } from '../../lib/utils';
-import { withAuth } from '../utils/withAuth';
+
 
 const Success = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
@@ -42,4 +42,4 @@ const Success = () => {
   )
 }
 
-export default withAuth(Success); 
+export default Success; 
