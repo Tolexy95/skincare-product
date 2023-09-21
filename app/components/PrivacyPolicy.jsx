@@ -9,14 +9,12 @@ const PrivacyPolicy = () => {
         <ul>
           <li>Data Collection: Learn about the types of data we collect and how we use it to improve your shopping experience.</li>
           <li>Data Security: We employ advanced security measures to protect your information from unauthorized access.</li>
-          {/* <li>Cookie Usage: Understand how cookies are used to enhance your browsing experience.</li> */}
           <li>Opt-Out Options: We respect your preferences and offer options to control the data you share with us.</li>
         </ul>
         <p>We value your trust and are committed to maintaining the confidentiality of your information.</p>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default PrivacyPolicy
+export default PrivacyPolicy;

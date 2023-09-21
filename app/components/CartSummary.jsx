@@ -4,9 +4,11 @@ import { useState } from "react"
 import { useStateContext } from "@/context/CartProductContext";
 import Link from "next/link";
 import { useAuth } from '@/context/AuthContext';
+import { useRouter } from "next/navigation";
 
 
 export function CartSummary() {
+  const router =useRouter();
   const [isLoading, setLoading] = useState(false)
   const { totalPrice} = useStateContext();
   const { isLoggedIn } = useAuth(); 
@@ -32,7 +34,7 @@ const deliveryEstimate = Math.ceil(totalPrice * 0.02);
 
     if (isLoggedIn) {
       // User is logged in, navigate to the checkout page
-      window.location.href = "/checkout";
+      router.push("/checkout") 
     } else {
       alert("You need to login to access this page.");
     }

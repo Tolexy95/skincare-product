@@ -7,11 +7,8 @@ import { ProductInfo } from "@/app/components/ProductInfo";
 import { ProductGallery } from "@/app/components/ProductGallery";
 import { Relatedproduct } from "@/app/components/RelatedProduct";
 import LoaderComponent from "@/app/components/LoaderComponent";
-import Slider from "react-slick";
 
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 export default function ProductDetails({ params }) {
     const [product, setProduct] = useState(null);
@@ -21,7 +18,23 @@ export default function ProductDetails({ params }) {
 
 
 
-    // Define an asynchronous function to fetch the product
+    
+
+
+    useEffect(() => {
+        // Add a slight delay before starting the animation (adjust as needed)
+        const animationTimeout = setTimeout(() => {
+            setAnimationStarted(true);
+        }, 500);
+
+        return () => {
+            clearTimeout(animationTimeout);
+        };
+    }, []);
+
+
+    useEffect(() => {
+        // Define an asynchronous function to fetch the product
     async function fetchProduct() {
         try {
             const productData = await client.fetch(
@@ -46,25 +59,10 @@ export default function ProductDetails({ params }) {
             // Handle error, e.g., set an error state
         }
     }
+fetchProduct()
 
-
-
-
-    useEffect(() => {
-        // Add a slight delay before starting the animation (adjust as needed)
-        const animationTimeout = setTimeout(() => {
-            setAnimationStarted(true);
-        }, 500);
-
-        return () => {
-            clearTimeout(animationTimeout);
-        };
-    }, []);
-
-    useEffect(() => {
-        // Call the fetchProduct function when the component mounts
-        fetchProduct();
     }, [params.slug]);
+
 
 
     useEffect(() => {

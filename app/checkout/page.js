@@ -61,7 +61,7 @@ const CheckOutPage = () => {
 
   const onClose = () => {
     alert("We love to see you purchase this item, please proceed");
-    window.location.href = "/";
+    router.push("/");
   };
 
   return (

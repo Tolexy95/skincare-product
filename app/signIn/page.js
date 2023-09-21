@@ -7,7 +7,6 @@ import { useAuth } from "@/context/AuthContext";
 import Image from 'next/image';
 import LoaderComponent from "../components/LoaderComponent";
 
-
 const SignInPage = () => {
     const router = useRouter()
     const [email, setEmail] = useState("");
@@ -17,7 +16,6 @@ const SignInPage = () => {
 
     const [isPasswordVisible, setPasswordVisible] = useState(false);
     const { signInEmail, resetPassword } = useAuth()
-
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -35,7 +33,6 @@ const SignInPage = () => {
             console.error("Error sending password reset email:", error);
             alert("An error occurred while sending the password reset email. Please try again later.");
         }
-
     };
 
     const handleSignIn = async (e) => {
@@ -52,7 +49,6 @@ const SignInPage = () => {
             setLoading(false);
         }
     };
-
 
     const togglePasswordVisibility = () => {
         setPasswordVisible((prevState) => !prevState);
@@ -118,7 +114,7 @@ const SignInPage = () => {
                             </p>
 
                             <p className="signup-link">
-                                Don't have an account?
+                                Don&apos;t have an account?
                                 <Link href="/signUp" className="signup-link link">
                                     Sign up
                                 </Link>
@@ -129,7 +125,6 @@ const SignInPage = () => {
             )}
             {error && <p className="absolute top-24">{error}</p>}
         </section>
-
     );
 }
 
