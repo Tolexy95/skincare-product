@@ -41,7 +41,7 @@ const SignInPage = () => {
 
         try {
             await signInEmail(email, password);
-            router.push("/checkout");
+            router.push("/");
         } catch (error) {
             console.error("Error signing in:", error.message);
             setError(error.message);
