@@ -1,4 +1,5 @@
-"use client"
+"use client"; 
+
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { useAuth } from "@/context/AuthContext";
 import Image from 'next/image';
 import LoaderComponent from "../components/LoaderComponent";
 
+// Define the SignInPage component
 const SignInPage = () => {
     const router = useRouter()
     const [email, setEmail] = useState("");
@@ -17,14 +19,17 @@ const SignInPage = () => {
     const [isPasswordVisible, setPasswordVisible] = useState(false);
     const { signInEmail, resetPassword } = useAuth()
 
+    // Handle email input change
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
 
+    // Handle password input change
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
 
+    // Handle forgot password functionality
     const handleForgotPassword = async () => {
         try {
             await resetPassword(email);
@@ -35,6 +40,7 @@ const SignInPage = () => {
         }
     };
 
+    // Handle the sign-in process
     const handleSignIn = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -50,6 +56,7 @@ const SignInPage = () => {
         }
     };
 
+    // Toggle password visibility
     const togglePasswordVisibility = () => {
         setPasswordVisible((prevState) => !prevState);
     };
@@ -128,4 +135,4 @@ const SignInPage = () => {
     );
 }
 
-export default SignInPage;
+export default SignInPage; 

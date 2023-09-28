@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { XCircle } from "lucide-react";
 import { urlForImage } from "@/lib/image";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+
+
 
 export function Relatedproduct({products }) {
 

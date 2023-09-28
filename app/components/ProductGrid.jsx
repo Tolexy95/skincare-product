@@ -1,10 +1,11 @@
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { XCircle } from "lucide-react";
 import { urlForImage } from "@/lib/image";
-import { useStateContext } from "@/context/CartProductContext";
+
 
 
 export function ProductGrid({ products }) {
@@ -18,7 +19,6 @@ export function ProductGrid({ products }) {
     }).format(amount);
   };
 
-  const { quantity, addToCart } = useStateContext();
   
 
   if (products.length === 0) {
@@ -60,8 +60,7 @@ export function ProductGrid({ products }) {
               <button
                 type="button"
                 className="border border-gray-100 py-1 px-1 w-full mt-6"
-                
-              >
+                  >
                 VIEW MORE
               </button>
             </div>

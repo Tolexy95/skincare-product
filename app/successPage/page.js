@@ -1,19 +1,33 @@
 "use client"
 
+// Import necessary modules and dependencies
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { useStateContext } from "../../context/CartProductContext";
 import { runFireworks } from '../../lib/utils';
 
+
+
+// Define the Success component
 const Success = () => {
   const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
   
+  // When the component mounts, perform these actions
   useEffect(() => {
+    // Clear local storage (remove any stored data)
     localStorage.clear();
+    
+    // Reset cart items to an empty array
     setCartItems([]);
+    
+    // Reset the total price to zero
     setTotalPrice(0);
+    
+    // Reset the total quantities to zero
     setTotalQuantities(0);
+    
+    // Run the fireworks animation
     runFireworks();
   }, [setCartItems, setTotalPrice, setTotalQuantities]); 
 
@@ -41,4 +55,4 @@ const Success = () => {
   )
 }
 
-export default Success;
+export default Success; // Export the Success component

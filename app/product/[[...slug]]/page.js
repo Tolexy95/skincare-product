@@ -16,11 +16,6 @@ export default function ProductDetails({ params }) {
     const [animationStarted, setAnimationStarted] = useState(false);
 
 
-
-
-    
-
-
     useEffect(() => {
         // Add a slight delay before starting the animation (adjust as needed)
         const animationTimeout = setTimeout(() => {

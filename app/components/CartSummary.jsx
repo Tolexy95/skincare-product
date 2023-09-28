@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 
 export function CartSummary() {
   const router =useRouter();
-  const [isLoading, setLoading] = useState(false)
   const { totalPrice} = useStateContext();
   const { isLoggedIn } = useAuth(); 
 
@@ -33,8 +32,8 @@ const deliveryEstimate = Math.ceil(totalPrice * 0.02);
     event.preventDefault();
 
     if (isLoggedIn) {
-      // User is logged in, navigate to the checkout page
-      router.push("/checkout") 
+      // User is logged in, navigate to the home page
+      router.push("/") 
     } else {
       alert("You need to login to access this page.");
     }

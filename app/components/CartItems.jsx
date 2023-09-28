@@ -6,7 +6,7 @@ import { urlForImage } from "@/lib/image"
 import { Clock, X } from "lucide-react"
 import { CartItemsEmpty } from "./CartItemEmpty"
 import { useStateContext } from "../../context/CartProductContext";
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai'
+
 
 export function  CartItems() {
   const {onRemove, cartItems, handleQuantityChange } = useStateContext();

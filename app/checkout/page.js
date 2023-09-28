@@ -1,6 +1,7 @@
-"use client";
+"use client"; 
 
-import React, {useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useStateContext } from "@/context/CartProductContext";
 import { PaystackButton } from "react-paystack";
 import { useRouter } from "next/navigation";
@@ -13,21 +14,24 @@ import { useAuth } from "@/context/AuthContext";
 const CheckOutPage = () => {
   const router = useRouter();
   const {
-    email, 
-    setEmail, 
+    email,
+    setEmail,
     fullName,
     setFullName,
     address,
     setAddress,
     phoneNumber,
-    setPhoneNumber} = useAuth()
-  
-  const [isloading, setIsLoading] = useState(false); 
-  const { totalPrice } = useStateContext();
+    setPhoneNumber,
+  } = useAuth(); // Access user authentication data from context
 
+  const [isLoading, setIsLoading] = useState(false); // State to manage loading status
+  const { totalPrice } = useStateContext(); // Access total price from context
+
+  // Calculate delivery estimate and order total
   const deliveryEstimate = Math.ceil(totalPrice * 0.02);
   const orderTotal = totalPrice + deliveryEstimate;
 
+  // Helper function to format amount as Naira
   const formatAsNaira = (amount) => {
     return new Intl.NumberFormat("en-NG", {
       style: "currency",
@@ -36,6 +40,7 @@ const CheckOutPage = () => {
     }).format(amount);
   };
 
+  // Handle the checkout process
   const handleCheckout = async () => {
     const userData = {
       fullName: fullName,
@@ -45,7 +50,7 @@ const CheckOutPage = () => {
     };
     try {
       setIsLoading(true);
-      const docRef = await addDoc(collection(db, "users"), userData);
+      const docRef = await addDoc(collection(db, "users"), userData); // Add user data to Firebase
     } catch (error) {
       console.error("Error adding document: ", error);
     } finally {
@@ -53,19 +58,21 @@ const CheckOutPage = () => {
     }
   };
 
+  // Callback function for a successful payment
   const onSuccess = (reference) => {
-    handleCheckout();
-    router.push("/successPage");
+    handleCheckout(); // Perform the checkout process
+    router.push("/successPage"); // Redirect to success page
   };
 
+  // Callback function when the payment modal is closed
   const onClose = () => {
     alert("We love to see you purchase this item, please proceed");
-    router.push("/");
+    router.push("/"); // Redirect to the homepage
   };
 
   return (
     <div className="mainDiv mt-32 max-w-lg mx-auto mb-36">
-      {isloading ? (
+      {isLoading ? ( // Display a loader component while loading
         <LoaderComponent />
       ) : (
         <div className="w-full">
@@ -131,4 +138,4 @@ const CheckOutPage = () => {
   );
 };
 
-export default CheckOutPage;
+export default CheckOutPage; 
